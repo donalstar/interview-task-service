@@ -5,8 +5,8 @@
 | Task        | ID           | Attributes  |
 | :------------- |:-------------| :-----|
 | Approve Received Invoice     | 1 | Inv. ID |
-| Validate W-9 Received By Supplier      | 2 | W-9 ID, Company ID |
-| Add Info to My Co. Profile | 3 | Company ID |
+| Validate W-9 Received By Supplier      | 2 | W-9 ID |
+| Add Info to My Co. Profile | 3 | Company Details |
 
 ## To start the service
 
