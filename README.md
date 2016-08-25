@@ -17,8 +17,20 @@
 * Set a task status
 * Fetch all tasks assigned to a user
 
-## To start the service
+## Create Some Initial Seed Data
 
+```sh
+
+# Get into the project directory and get a Postgres prompt
+$ cd interview-task-service
+
+$ psql
+
+# execute the seartup.sql script
+tasks=> \i bin/setup.sql
+
+# Quit postgres
+tasks=> \q
 ```sh
 
 # Get into the project directory
