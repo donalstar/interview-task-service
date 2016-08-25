@@ -8,9 +8,16 @@
 | Validate W-9 Received By Supplier      | 2 | W-9 ID |
 | Add Info to My Co. Profile | 3 | Company Details |
 
+
+
+### Sample Set of Service Requests
+
+* Create a task.
+* Assign a task to a user.
+* Set a task status
+* Fetch all tasks assigned to a user
+
 ## To start the service
-
-
 
 ```sh
 
