@@ -1,8 +1,10 @@
 ## Task Service
 
-| Tables        | Are           | Cool  |
+### Initial Sample Tasks
+
+| Task        | ID           | Attributes  |
 | ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
+| Approve Received Invoice     | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
 
