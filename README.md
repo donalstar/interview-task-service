@@ -3,10 +3,10 @@
 ### Initial Sample Tasks
 
 | Task        | ID           | Attributes  |
-| :------------- |:-------------:| -----:|
-| Approve Received Invoice     | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| :------------- |:-------------| :-----|
+| Approve Received Invoice     | 1 | Inv. ID |
+| Validate W-9 Received By Supplier      | 2 | W-9 ID, Company ID |
+| Add Info to My Co. Profile | 3 | Company ID |
 
 ## To start the service
 
