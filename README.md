@@ -31,6 +31,10 @@ tasks=> \i bin/setup.sql
 
 # Quit postgres
 tasks=> \q
+```
+
+## To start the service
+
 ```sh
 
 # Get into the project directory
