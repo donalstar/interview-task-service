@@ -26,7 +26,7 @@ $ cd interview-task-service
 
 $ psql
 
-# execute the seartup.sql script
+# execute the startup.sql script
 tasks=> \i bin/setup.sql
 
 # Quit postgres
