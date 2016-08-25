@@ -44,14 +44,14 @@ $ mvn test
 $ mvn jetty:run
 
 # Confirm a response from the service
-$ curl http://localhost:8080/hello
-Shift happens!
+$ curl http://localhost:8080/task
+The Task Service!
 
 # Save a message to confirm writing to the database works
-$ curl -X POST http://localhost:8080/hello/post
+$ curl -X POST http://localhost:8080/task/post
 
 # Get the message back
-$ curl http://localhost:8080/hello/get
+$ curl http://localhost:8080/task/get
 It works!
 ```
 
