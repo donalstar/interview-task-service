@@ -15,9 +15,9 @@
 
 ``POST /task``
 
-**Request Example:**
+__Request Example:__
 
-Response Example:
+__Response Example:__
 
 ####  Assign a task to a user.
 ####  Set a task status
