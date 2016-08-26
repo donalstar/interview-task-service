@@ -17,6 +17,10 @@
 * Set a task status
 * Fetch all tasks assigned to a user
 
+### Service Request Documentation
+
+#### Create a task
+
 ## Create Some Initial Seed Data
 
 ```sh
