@@ -23,7 +23,6 @@ $curl [hostname]/task \
 “Name” “My Task”,
 “Attributes: { “param1”: “val1”, “param2”: “val2” } 
 }’
-
 ```
 
 _Response Example:_
@@ -36,13 +35,83 @@ Content-Type:application:json
 “Message”: “Task created successfully”,
 “Task_id”: 1
 } 
-
-
 ```
 
 ####  Assign a task to a user.
+
+``POST /task/{task-id}/assign``
+
+_Request Example:_
+
+```
+$curl [hostname]/task/{task-id}/assign/{user-id}
+```
+
+_Response Example:_
+
+```
+HTTP/1.1 200 OK
+Content-Type:application:json
+{
+“code”: 0,
+“Message”: “Task assigned successfully”,
+} 
+```
+
 ####  Set a task status
+
+``POST /task/{task-id}/setstatus/{status}``
+
+_Request Example:_
+
+```
+$curl [hostname]/task/{task-id}/setstatus/complete
+```
+
+_Response Example:_
+
+```
+HTTP/1.1 200 OK
+Content-Type:application:json
+{
+“code”: 0,
+“Message”: “Task status updated successfully”,
+} 
+```
+
 ####  Fetch all tasks assigned to a user
+
+``GET /task?user_id={user-id}``
+
+_Request Example:_
+
+```
+$curl [hostname]/task?user_id={user-id}
+```
+
+_Response Example:_
+
+```
+HTTP/1.1 200 OK
+Content-Type:application:json
+{
+“code”: 0,
+“message”: “Success”,
+“tasks”:  [
+{ “id”: 1,
+“Name”: “My Task”,
+“Status” “Active”,
+“Assigned”: 2,
+“Attributes”: {
+“param1” : “val1”,
+etc.
+},
+{
+etc.
+}
+]
+} 
+```
 
 ## Create Some Initial Seed Data
 
