@@ -7,10 +7,16 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <context:component-scan base-package="com.tradeshift"></context:component-scan>
 
-    <bean id="messageDAO" class="com.tradeshift.TaskDAO">
+    <bean id="taskDAO" class="com.tradeshift.TaskDAO">
         <property name="dataSource" ref="dataSource"/>
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+
+    <bean id="userDAO" class="com.tradeshift.UserDAO">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>
