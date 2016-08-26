@@ -18,11 +18,11 @@
 _Request Example:_
 
 ```
-$curl [hostname]/task \
--d ‘{
-“Name” “My Task”,
-“Attributes: { “param1”: “val1”, “param2”: “val2” } 
-}’
+
+$curl -H "Content-Type: application/json" -X POST \
+-d '{"name":"my task","attributes": "{ \"ghg\": \"val\", \"p2\", \"val2\" }" }' http://[hostname]/task
+
+
 ```
 
 _Response Example:_
