@@ -9,17 +9,15 @@
 | Add Info to My Co. Profile | 3 | Company Details |
 
 
+### Sample Service Requests - Documentation
 
-### Sample Set of Service Requests
+####  Create a task.
 
-* Create a task.
-* Assign a task to a user.
-* Set a task status
-* Fetch all tasks assigned to a user
+``POST /task``
 
-### Service Request Documentation
-
-#### Create a task
+####  Assign a task to a user.
+####  Set a task status
+####  Fetch all tasks assigned to a user
 
 ## Create Some Initial Seed Data
 
