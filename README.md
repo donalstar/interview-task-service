@@ -15,9 +15,14 @@
 
 ``POST /task``
 
-__Request Example:__
+_Request Example:_
 
-__Response Example:__
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
+_Response Example:_
 
 ####  Assign a task to a user.
 ####  Set a task status
