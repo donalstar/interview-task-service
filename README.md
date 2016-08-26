@@ -17,7 +17,7 @@
 
 _Request Example:_
 
-```javascript
+```
 $curl [hostname]/task \
 -d ‘{
 “Name” “My Task”,
@@ -27,6 +27,18 @@ $curl [hostname]/task \
 ```
 
 _Response Example:_
+
+```
+HTTP/1.1 201 Created
+Content-Type:application:json
+{
+“code”: 0,
+“Message”: “Task created successfully”,
+“Task_id”: 1
+} 
+
+
+```
 
 ####  Assign a task to a user.
 ####  Set a task status
