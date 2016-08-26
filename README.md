@@ -18,8 +18,12 @@
 _Request Example:_
 
 ```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
+$curl [hostname]/task \
+-d ‘{
+“Name” “My Task”,
+“Attributes: { “param1”: “val1”, “param2”: “val2” } 
+}’
+
 ```
 
 _Response Example:_
