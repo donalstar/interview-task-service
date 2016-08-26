@@ -15,6 +15,10 @@
 
 ``POST /task``
 
+**Request Example:**
+
+Response Example:
+
 ####  Assign a task to a user.
 ####  Set a task status
 ####  Fetch all tasks assigned to a user
