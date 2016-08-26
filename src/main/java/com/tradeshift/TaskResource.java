@@ -3,10 +3,7 @@ package com.tradeshift;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.POST;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Component
@@ -19,23 +16,62 @@ public class TaskResource {
         this.taskService = taskService;
     }
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String sayIt() {
-        return taskService.sayIt();
-    }
+    /**
+     * Create a new task
+     *
+     * @param task
+     * @return
+     */
 
     @POST
-    @Path("post")
-    @Produces(MediaType.TEXT_PLAIN)
-    public void saveOne() {
-        taskService.saveOne("Created a task!");
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response create(Task task) {
+        return taskService.create(task);
     }
 
+    /**
+     * Assign a task to a user
+     *
+     * @param taskId
+     * @param userId
+     * @return
+     */
+
+    @POST
+    @Path("/{task_id}/assign/{user_id}")
+    @Produces({"application/json"})
+    public Response assignTaskToUser(@PathParam("task_id") Integer taskId, @PathParam("user_id") Integer userId) {
+        return taskService.assignTaskToUser(taskId, userId);
+    }
+
+
+    /**
+     * Set task status
+     *
+     * @param taskId
+     * @param status
+     * @return
+     */
+
+    @POST
+    @Path("/{task_id}/setstatus/{status}")
+    @Produces({"application/json"})
+    public Response setStatus(@PathParam("task_id") Integer taskId, @PathParam("status") String status) {
+        return taskService.setStatus(taskId, status);
+    }
+
+
+    /**
+     * Get tasks assigned to a user
+     *
+     * @param userId
+     * @return
+     */
     @GET
-    @Path("get")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getOne() {
-        return taskService.getOne();
+    @Produces({"application/json"})
+    public Response getTasks(@QueryParam("user_id") int userId) {
+        return taskService.getTasks(userId);
     }
 }
+

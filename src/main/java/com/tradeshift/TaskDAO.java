@@ -30,7 +30,7 @@ public class TaskDAO {
     public void createSchema() {
 
         String sql = "CREATE table IF NOT EXISTS tasks " +
-                "(id integer PRIMARY KEY, name text, attributes text, status integer, assigned_user integer);";
+                "(id serial PRIMARY KEY, name text, attributes text, status integer, assigned_user integer);";
 
         this.jdbcTemplate.execute(sql);
     }
