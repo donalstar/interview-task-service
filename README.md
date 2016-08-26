@@ -39,7 +39,7 @@ Content-Type:application:json
 
 ####  Assign a task to a user.
 
-``POST /task/{task-id}/assign``
+``POST /task/{task-id}/assign/{user-id}``
 
 _Request Example:_
 
