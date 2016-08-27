@@ -1,20 +1,29 @@
 package com.tradeshift;
 
+import com.tradeshift.model.Result;
+import com.tradeshift.model.Task;
+import com.tradeshift.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.core.Response;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class TaskService {
+    static Logger logger = Logger.getLogger(TaskService.class.getName());
+
     private TaskDAO taskDAO;
+    private UserDAO userDAO;
 
     @Autowired
-    public TaskService(TaskDAO taskDAO) {
+    public TaskService(TaskDAO taskDAO, UserDAO userDAO) {
         this.taskDAO = taskDAO;
+        this.userDAO = userDAO;
     }
+
 
     /**
      * Create a new task
@@ -23,17 +32,35 @@ public class TaskService {
      * @return
      */
     public Response create(Task task) {
-        try {
-            taskDAO.saveOne(task.getName());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        logger.info("Create new task");
+
+        Response response;
+
+        // TODO: Better way to handle invalid input?
+        if (task.getName() == null) {
+            logger.warning("Task name is not set");
+
+            return Response.status(Response.Status.BAD_REQUEST).entity("Task name is not set").build();
         }
 
-        Response response = new Response();
+        try {
+            int taskId = taskDAO.create(task);
 
-        response.setCode(0);
-        response.setMessage("ok");
-        response.setTaskId(123);
+            Result result = new Result();
+
+            result.setReturnStatus(ReturnStatus.OK);
+            result.setTaskId(taskId);
+
+            Response.ResponseBuilder builder = Response.ok(result);
+
+            return builder.build();
+        } catch (SQLException e) {
+            logger.severe("Database error " + e);
+
+            e.printStackTrace();
+
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.toString()).build();
+        }
 
         return response;
     }
@@ -46,12 +73,48 @@ public class TaskService {
      * @return
      */
     public Response assignTaskToUser(int taskId, int userId) {
-        System.out.println("Assign task " + taskId + " to user : " + userId);
+        logger.info("Assign task " + taskId + " to user : " + userId);
 
-        Response response = new Response();
+        User user;
 
-        response.setCode(0);
-        response.setMessage("ok");
+        try {
+            user = userDAO.get(userId);
+        } catch (Exception e) {
+            logger.warning("Failed to locate user " + userId);
+            return Response.status(Response.Status.BAD_REQUEST).entity("Failed to locate user " + userId).build();
+        }
+
+        Task task;
+
+        try {
+            task = taskDAO.get(taskId);
+        } catch (Exception e) {
+            logger.warning("Failed to locate task " + taskId);
+
+            return Response.status(Response.Status.BAD_REQUEST).entity("Failed to locate task " + taskId).build();
+        }
+
+        Response response;
+
+        task.setAssignedUser(user.getId());
+        task.setStatus(TaskStatus.ASSIGNED.code);
+
+        try {
+            taskDAO.update(task);
+
+            Result result = new Result();
+
+            result.setReturnStatus(ReturnStatus.OK);
+            result.setTaskId(taskId);
+
+            Response.ResponseBuilder builder = Response.ok(result);
+
+            response = builder.build();
+        } catch (SQLException e) {
+            logger.warning("Failed to update task record " + taskId);
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to update task record " + taskId).build();
+        }
 
         return response;
     }
@@ -64,12 +127,46 @@ public class TaskService {
      * @return
      */
     public Response setStatus(Integer taskId, String status) {
-        System.out.println("Set status for " + taskId + " + : " + status);
+        logger.info("Set status for " + taskId + " : " + status);
 
-        Response response = new Response();
+        TaskStatus taskStatus = TaskStatus.discoverMatchingEnum(status);
 
-        response.setCode(0);
-        response.setMessage("ok");
+        if (taskStatus.equals(TaskStatus.UNKNOWN)) {
+            logger.warning("Invalid status value " + status);
+
+            return Response.status(Response.Status.BAD_REQUEST).entity("Invalid status value " + status).build();
+        }
+
+        Task task;
+
+        try {
+            task = taskDAO.get(taskId);
+        } catch (Exception e) {
+            logger.warning("Failed to locate task " + taskId);
+
+            return Response.status(Response.Status.BAD_REQUEST).entity("Failed to locate task " + taskId).build();
+        }
+
+        Response response;
+
+        task.setStatus(taskStatus.code);
+
+        try {
+            taskDAO.update(task);
+
+            Result result = new Result();
+
+            result.setReturnStatus(ReturnStatus.OK);
+            result.setTaskId(taskId);
+
+            Response.ResponseBuilder builder = Response.ok(result);
+
+            response = builder.build();
+        } catch (SQLException e) {
+            logger.warning("Failed to update task record " + taskId);
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to update task record " + taskId).build();
+        }
 
         return response;
     }
@@ -81,24 +178,24 @@ public class TaskService {
      * @return
      */
     public Response getTasks(Integer userId) {
-        System.out.println("Get tasks for user " + userId);
+        logger.info("Get tasks for user " + userId);
 
-        Response response = new Response();
+        Response response = null;
 
-        response.setCode(0);
-        response.setMessage("ok");
+        try {
+            List<Task> tasks = taskDAO.getForUser(userId);
 
-        Task task1 = new Task();
-        task1.setName("task1");
+            Result result = new Result();
 
-        Task task2 = new Task();
-        task2.setName("task2");
+            result.setReturnStatus(ReturnStatus.OK);
+            result.setTasks(tasks);
 
-        List<Task> tasks = new ArrayList<Task>();
-        tasks.add(task1);
-        tasks.add(task2);
+            Response.ResponseBuilder builder = Response.ok(result);
 
-        response.setTasks(tasks);
+            response = builder.build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return response;
     }

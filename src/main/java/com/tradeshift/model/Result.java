@@ -1,14 +1,18 @@
-package com.tradeshift;
+package com.tradeshift.model;
+
+import com.tradeshift.ReturnStatus;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * Response object for return to the client
+ * Result object for return to the client
  */
 
-@XmlRootElement(name = "response")
-public class Response {
+@XmlRootElement(name = "result")
+public class Result {
+    ReturnStatus returnStatus;
+
     int code;
     String message;
     Integer taskId;
@@ -44,5 +48,13 @@ public class Response {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public ReturnStatus getReturnStatus() {
+        return returnStatus;
+    }
+
+    public void setReturnStatus(ReturnStatus returnStatus) {
+        this.returnStatus = returnStatus;
     }
 }
