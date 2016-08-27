@@ -120,6 +120,8 @@ etc.
 
 ## Create Some Initial Seed Data
 
+Adding some test users into the **users** table.
+
 ```sh
 
 # Get into the project directory and get a Postgres prompt
@@ -132,6 +134,24 @@ tasks=> \i bin/setup.sql
 
 # Quit postgres
 tasks=> \q
+```
+
+## Scripts to Run Some Simple Tests
+```
+$ cd bin
+
+# Create a new task
+./create_task.sh
+
+# Assign a task to a user
+./assign_task_to_user.sh
+
+# Set task status
+./set_status.sh
+
+# Get all tasks assigned to a user
+./get_user_tasks.sh
+
 ```
 
 ## To start the service
