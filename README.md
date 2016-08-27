@@ -1,12 +1,9 @@
 ## Task Service
 
-### Initial Sample Tasks
+### Overview
 
-| Task        | ID           | Attributes  |
-| :------------- |:-------------| :-----|
-| Approve Received Invoice     | 1 | Inv. ID |
-| Validate W-9 Received By Supplier      | 2 | W-9 ID |
-| Add Info to My Co. Profile | 3 | Company Details |
+### Example Use Cases
+
 
 
 ### Sample Service Requests - Documentation
@@ -112,6 +109,14 @@ etc.
 ]
 } 
 ```
+### Initial Sample Tasks
+
+| Task        | ID           | Attributes  |
+| :------------- |:-------------| :-----|
+| Approve Received Invoice     | 1 | Inv. ID |
+| Validate W-9 Received By Supplier      | 2 | W-9 ID |
+| Add Info to My Co. Profile | 3 | Company Details |
+
 
 ## Create Some Initial Seed Data
 
