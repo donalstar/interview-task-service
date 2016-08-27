@@ -148,6 +148,6 @@ $ cd bin
 
 ## To start the service
 
-Start the web service per the instructions in https://github.com/Tradeshift/interview-task-service
+Start/unit-test the web service per the instructions in https://github.com/Tradeshift/interview-task-service
 
 
