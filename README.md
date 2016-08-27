@@ -109,14 +109,6 @@ etc.
 ]
 } 
 ```
-### Initial Sample Tasks
-
-| Task        | ID           | Attributes  |
-| :------------- |:-------------| :-----|
-| Approve Received Invoice     | 1 | Inv. ID |
-| Validate W-9 Received By Supplier      | 2 | W-9 ID |
-| Add Info to My Co. Profile | 3 | Company Details |
-
 
 ## Create Some Initial Seed Data
 
@@ -180,16 +172,6 @@ $ mvn test
 # Start the service
 $ mvn jetty:run
 
-# Confirm a response from the service
-$ curl http://localhost:8080/task
-The Task Service!
-
-# Save a message to confirm writing to the database works
-$ curl -X POST http://localhost:8080/task/post
-
-# Get the message back
-$ curl http://localhost:8080/task/get
-It works!
 ```
 
 
