@@ -110,23 +110,6 @@ etc.
 } 
 ```
 
-## Create Some Initial Seed Data
-
-Adding some test users into the **users** table.
-
-```sh
-
-# Get into the project directory and get a Postgres prompt
-$ cd interview-task-service
-
-$ psql
-
-# execute the startup.sql script
-tasks=> \i bin/setup.sql
-
-# Quit postgres
-tasks=> \q
-```
 
 ## Scripts to Run Some Simple Tests
 ```
