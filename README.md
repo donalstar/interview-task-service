@@ -2,8 +2,14 @@
 
 ### Overview
 
+This is a simple REST-based web service that provides task-related functionality for clients.
+
 ### Example Use Cases
 
+* As a Tradeshift API consumer, I want to create a task.
+* As a Tradeshift API consumer, I want to assign a task to a user.
+* As a Tradeshift API consumer, I want to complete a task.
+* As a Tradeshift API consumer, I want to fetch all tasks assigned to me.
 
 
 ### Sample Service Requests - Documentation
